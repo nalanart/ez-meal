@@ -1,19 +1,22 @@
 const express = require('express')
-const app = express()
 
 // middleware
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const passport = require('passport')
-const passportLocal = require('passport-local')
+
 const cookieParser = require('cookie-parser')
+const flash = require('connect-flash')
 const session = require('express-session')
+const passport = require('passport')
 
 // routers
 const loginRouter = require('./routes/login')
 const registerRouter = require('./routes/register')
 
-const PORT = process.env.PORT || 4000
+const app = express()
+
+const initializePassport = require('./config/passport')
+initializePassport(passport)
 
 // middleware
 app.use(bodyParser.json())
@@ -24,10 +27,15 @@ app.use(session({
    resave: true,
    saveUninitialized: true
 }))
+app.use(flash())
 app.use(cookieParser('Shoto'))
+app.use(passport.initialize())
+app.use(passport.session())
 
 // routes
 app.use('/login', loginRouter)
 app.use('/register', registerRouter)
+
+const PORT = process.env.PORT || 4000
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
