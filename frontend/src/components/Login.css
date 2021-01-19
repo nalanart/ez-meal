@@ -1,0 +1,18 @@
+.Login {
+  width: 25%;
+  margin: auto;
+  padding: 1rem 2rem;
+  border: 1px solid #AFAFAF;
+  border-radius: 1rem;
+}
+
+.Login h1 {
+  margin-bottom: 1.5rem;
+}
+
+.btn-login {
+  width: 100%;
+  color: #ffffff;
+  background-color: #0dcaf0;
+  margin-bottom: 1rem;
+}

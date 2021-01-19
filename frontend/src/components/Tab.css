@@ -1,0 +1,34 @@
+.Tab {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  float: right;
+  position: fixed;
+  top: 50%;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #efefef;
+}
+
+.Tab ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.meal__item li {
+  display: inline;
+}
+
+.btn-checkout {
+  background-color: #4dcf33;
+  color: #ffffff;
+  width: 50%;
+}
+
+.Tab__heading {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,12 @@
+.Bundle {
+  width: 30%;
+}
+
+.Bundle img,
+.Bundle button {
+  width: 100%;
+}
+
+.Bundle:hover {
+  box-shadow: 2px 2px 2px 2px #AFAFAF;
+}

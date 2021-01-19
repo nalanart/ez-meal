@@ -1,0 +1,9 @@
+section.choose-bundle {
+  width: 80%;
+  margin: auto;
+}
+
+.Bundles {
+  display: flex;
+  justify-content: space-between;
+}
