@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const path = require('path')
 
 // middleware
 const bodyParser = require('body-parser')
@@ -44,6 +45,15 @@ app.use('/login', loginRouter)
 app.use('/register', registerRouter)
 app.use('/recipes', recipesRouter)
 app.use('/users', usersRouter)
+
+if(process.env.NODE_ENV === 'production') {
+   // Serve any static files
+   app.use(express.static(path.join(__dirname, 'frontend/build')))
+   //Handle React routing, return all requests to React app
+   app.get('*', function(req, res) {
+     res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'))
+   })
+ }
 
 const PORT = process.env.PORT || 4000
 
