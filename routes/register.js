@@ -1,5 +1,6 @@
 const registerRouter = require('express').Router()
 const pool = require('../config/db')
+const User = require('../models/User')
 const bcrypt = require('bcrypt')
 
 registerRouter.post('/', async (req, res) => {
@@ -20,15 +21,30 @@ registerRouter.post('/', async (req, res) => {
 
   try {
     // query db for email
-    const results = await pool.query('SELECT * FROM users WHERE email = $1', [email])
+    const user = await User.findOne({ email: email }).exec()
+    console.log(user)
+    // const results = await pool.query('SELECT * FROM users WHERE email = $1', [email])
     // if email exists
-    if(results.rowCount) {
+    if(user) {
       res.status(400).json({ error: 'Email already registered' })
-    } else { // email does not exist -- hash password and create new user
+    } else {
       const hashedPassword = await bcrypt.hash(password1, 10)
-      const newUser = await pool.query('INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4)', [firstName, lastName, email, hashedPassword])
-      res.status(201).send('Account successfully created')
+      const newUser = new User({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: hashedPassword
+      })
+      const savedUser = await newUser.save()
+      res.status(201).send(savedUser)
     }
+    // if(results.rowCount) {
+    //   res.status(400).json({ error: 'Email already registered' })
+    // } else { // email does not exist -- hash password and create new user
+    //   const hashedPassword = await bcrypt.hash(password1, 10)
+    //   const newUser = await pool.query('INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4)', [firstName, lastName, email, hashedPassword])
+    //   res.status(201).send('Account successfully created')
+    // }
   } catch (error) {
     res.sendStatus(500)
   }

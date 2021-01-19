@@ -1,4 +1,5 @@
 const express = require('express')
+const mongoose = require('mongoose')
 
 // middleware
 const bodyParser = require('body-parser')
@@ -12,11 +13,17 @@ const passport = require('passport')
 // routers
 const loginRouter = require('./routes/login')
 const registerRouter = require('./routes/register')
+const recipesRouter = require('./routes/recipes')
+const usersRouter = require('./routes/users')
 
 const app = express()
 
 const initializePassport = require('./config/passport')
 initializePassport(passport)
+
+mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+   console.log('connected to db')
+})
 
 // middleware
 app.use(bodyParser.json())
@@ -35,6 +42,8 @@ app.use(passport.session())
 // routes
 app.use('/login', loginRouter)
 app.use('/register', registerRouter)
+app.use('/recipes', recipesRouter)
+app.use('/users', usersRouter)
 
 const PORT = process.env.PORT || 4000
 
