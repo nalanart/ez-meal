@@ -5,21 +5,24 @@ import Login from './components/Login'
 import Landing from './components/Landing'
 import Home from './components/Home'
 import Recipes from './components/Recipes'
-import Cart from './components/Cart'
+import Checkout from './components/Checkout'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 function App() {
-  const [user, setUser] = useState()
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') || 'false')
 
   const login = data => {
     setUser(data)
+    localStorage.setItem('user', JSON.stringify(data))
     setIsLoggedIn('true')
     localStorage.setItem('isLoggedIn', 'true')
   }
   
   const logout = () => {
+    setUser(null)
+    localStorage.setItem('user', JSON.stringify(null))
     setIsLoggedIn('false')
     localStorage.setItem('isLoggedIn', 'false')
   }
@@ -38,7 +41,7 @@ function App() {
           <Route path="/login" render={props => <Login logInUser={login} setUser={setUser} />} />
           <Route path="/register" component={Register} />
           {/* <Route path="/recipes" render={props => <Recipes bundleSelected={bundleSelected} />} /> */}
-          <Route path="/cart" component={Cart} />
+          <Route path="/checkout" render={props => <Checkout user={user} />} />
         </Switch>
       </Router>
     </div>

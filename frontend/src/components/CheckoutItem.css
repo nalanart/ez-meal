@@ -1,0 +1,13 @@
+.CheckoutItem {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 2rem;
+}
+
+.CheckoutItem__image {
+  width: 200px;
+}
+
+.CheckoutItem__item {
+  display: flex;
+}
