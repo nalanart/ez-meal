@@ -3,13 +3,9 @@ import Tab from './Tab'
 import { useState, useEffect } from 'react'
 const axios = require('axios')
 
-export default function Recipes({ user, bundleSelected }) {
+export default function Recipes({ user, bundleSelected, showTab, setShowTab }) {
   const [allMeals, setAllMeals] = useState([])
   const [selectedMeals, setSelectedMeals] = useState([])
-  const [showTab, setShowTab] = useState(false)
-  const [requestObject, setRequestObject] = useState({
-    action: '',
-  })
 
   useEffect(() => {
     axios.get('/recipes')

@@ -5,9 +5,11 @@ import { useState } from 'react'
 
 export default function Home({ user }) {
   const [bundleSelected, setBundleSelected] = useState()
+  const [showTab, setShowTab] = useState(false)
 
   const selectBundle = numberOfMeals => {
     setBundleSelected(numberOfMeals)
+    setShowTab(true)
   }
 
   return (
@@ -22,7 +24,7 @@ export default function Home({ user }) {
       </section>
       <section className="choose-meals">
         <h2 id="choose-meals" className="section-title">CHOOSE YOUR MEALS</h2>
-        <Recipes user={user} bundleSelected={bundleSelected} />
+        <Recipes user={user} bundleSelected={bundleSelected} showTab={showTab} setShowTab={setShowTab} />
       </section>
     </div>
   )

@@ -4,17 +4,18 @@ import { useState, useEffect } from 'react'
 const axios = require('axios')
 
 export default function Checkout({ user }) {
-  const [cart, setCart] = useState(user.cart)
+  const [cart, setCart] = useState([])
 
-  // useEffect(() => {
-  //   axios.get(`/users/${user._id}`)
-  //     .then(response => {
-  //       console.log(response)
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //     })
-  // })
+  useEffect(() => {
+    axios.get(`/users/${user._id}`)
+      .then(response => {
+        console.log(response)
+        setCart(response.data.cart)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [cart])
 
   return cart.length > 0 ? (
     <div className="Checkout">

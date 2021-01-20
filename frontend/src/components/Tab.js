@@ -16,7 +16,7 @@ export default function Tab({ selectedMeals, deselectMeal, bundleSelected, setSh
           </div>
         ))}
       </ul>
-      <a className="btn btn-checkout" onClick={updateUserCart}>Proceed to checkout</a>
+      <a className="btn btn-checkout" href="/checkout" onClick={updateUserCart}>Proceed to checkout</a>
     </div>
   ) : (
     <div className="Tab">
