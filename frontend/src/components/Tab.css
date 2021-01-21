@@ -22,6 +22,14 @@
   display: inline;
 }
 
+.meal__item input {
+  width: 2.5rem;
+}
+
+.meal__item u:hover {
+  cursor: pointer;
+}
+
 .btn-checkout {
   background-color: #4dcf33;
   color: #ffffff;
