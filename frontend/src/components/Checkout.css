@@ -1,10 +1,50 @@
+.Checkout {
+  color: #575757;
+}
+
 .Checkout ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-div.Checkout__table-header {
+.Checkout__payment {
+  padding: 0;
+  border-left: #dadada solid 1px;
+}
+
+.Checkout__table h2 {
   width: 90%;
-  margin: auto;
-} 
+  margin: 2.5rem auto;
+}
+
+.Checkout__table button {
+  float: right;
+}
+
+.Checkout__shipping {
+  padding-top: 2.5rem;
+}
+
+.Checkout__payment,
+.Checkout__shipping,
+.Checkout__summary {
+  display: flex;
+  flex-direction: column;
+}
+
+.Checkout__shipping,
+.Checkout__summary {
+  width: 80%;
+  margin: 1rem auto;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Checkout__payment button {
+  width: 60%;
+  margin: 1rem auto;
+}

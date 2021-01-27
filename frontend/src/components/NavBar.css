@@ -1,13 +1,27 @@
 nav {
+  background-color: #fcc512;
   padding-top: 1rem;
   padding-bottom: 1rem;
   justify-content: space-between;
+}
+
+#logo {
+  font-size: 2rem;
+}
+
+a.nav-link {
+  color: #ffffff;
+}
+
+a.nav-link:hover {
+  color: #e2e2e2;
 }
 
 .links,
 .login-signup,
 .cart-logout {
   display: flex;
+  align-items: center;
 }
 
 .signup {
@@ -15,6 +29,6 @@ nav {
   margin-right: 1rem;
 }
 
-.cart-logout img:hover {
-  cursor: pointer;
+.login-signup {
+  font-size: 1.25rem;
 }

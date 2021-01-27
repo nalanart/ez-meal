@@ -4,10 +4,14 @@
   margin-bottom: 2rem;
 }
 
-.CheckoutItem__image {
-  width: 200px;
+u:hover {
+  cursor: pointer;
 }
 
-.CheckoutItem__item {
-  display: flex;
+.CheckoutItem__qty {
+  height: 50px;
+}
+
+.CheckoutItem__price {
+  text-align: end;
 }

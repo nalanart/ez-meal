@@ -7,19 +7,22 @@
   top: 50%;
   right: 0;
   background-color: #ffffff;
-  border: 1px solid #efefef;
+  border: 1px solid #c0c0c0;
+  padding: 1rem;
 }
 
 .Tab ul {
-  display: flex;
-  flex-direction: column;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.meal__item li {
-  display: inline;
+.meal__item:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.meal__item:last-child {
+  margin-bottom: 2rem;
 }
 
 .meal__item input {
@@ -31,9 +34,13 @@
 }
 
 .btn-checkout {
-  background-color: #4dcf33;
+  background-color: #258a11;
   color: #ffffff;
   width: 50%;
+}
+
+a.btn-checkout:hover {
+  color: #ececec;
 }
 
 .Tab__heading {
