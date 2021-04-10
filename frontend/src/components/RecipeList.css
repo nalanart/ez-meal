@@ -1,7 +1,5 @@
 .RecipeList {
-  width: 80%;
-  margin: auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
 }

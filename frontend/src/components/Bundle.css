@@ -1,12 +1,22 @@
 .Bundle {
+  border: solid #afafaf 1px;
   width: 30%;
 }
 
 .Bundle img,
-.Bundle button {
+.Bundle a {
   width: 100%;
 }
 
 .Bundle:hover {
   box-shadow: 2px 2px 2px 2px #AFAFAF;
 }
+
+h3.bundle-title {
+  padding: 0.75rem 0;
+  color: #ffffff;
+  background-color: #fcc512;
+  text-align: center;
+  margin: 0;
+}
+

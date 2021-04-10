@@ -47,3 +47,7 @@ a.btn-checkout:hover {
   display: flex;
   justify-content: space-between;
 }
+
+.meal__item-qty {
+  margin: 0;
+}

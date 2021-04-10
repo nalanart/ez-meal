@@ -3,7 +3,7 @@ import Tab from './Tab'
 import { useState, useEffect } from 'react'
 const axios = require('axios')
 
-export default function Recipes({ user, bundleSelected, showTab, setShowTab }) {
+export default function Recipes({ user, bundleSelected, showTab, setShowTab, pricePerMeal }) {
   const [allMeals, setAllMeals] = useState([])
   const [selectedMeals, setSelectedMeals] = useState([])
 
@@ -16,56 +16,25 @@ export default function Recipes({ user, bundleSelected, showTab, setShowTab }) {
       .catch(err => {
         console.log(err)
       })
-    
-      // axios.get(`/users/${user.id}`)
-      //   .then(response => {
-      //     console.log(response.data)
-      //   })
-      //   .catch(err => {
-      //     console.log(err)
-      //   })
   }, [])
 
   const selectMeal = meal => {
     setSelectedMeals(prev => [...prev, meal])
     setShowTab(true)
-
-    // axios.patch('/users/2', {
-    //   action: "ADD_ITEM",
-    //   item: {
-    //     name: "hello",
-    //     price: 2.99,
-    //     type: "breakfast"
-    //   }
-    // })
-    // // TO DO: handle responses properly
-    //   .then(response => {
-    //     console.log(response)
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //   })
   }
 
   const deselectMeal = targetIndex => {
     setSelectedMeals(prev => prev.filter((meal, index) => index !== targetIndex))
-    // axios.patch('/users/2', {
-    //   action: "REMOVE_ITEM",
-    //   itemIndex: `cart - ${targetIndex}`
-    // })
-    // // TO DO: handle responses properly
-    //   .then(response => {
-    //     console.log(response)
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //   })
   }
 
   const updateUserCart = () => {    
     axios.put(`/users/${user._id}`, {
       ...user,
-      cart: selectedMeals
+      cart: {
+        bundleSelected: bundleSelected,
+        pricePerMeal: pricePerMeal,
+        items: selectedMeals
+      }
     })
       .then(response => {
         console.log(response)
@@ -80,7 +49,7 @@ export default function Recipes({ user, bundleSelected, showTab, setShowTab }) {
   return (
     <div className="Recipes">
       <RecipeList allMeals={allMeals} selectMeal={selectMeal} />
-      {showTab && <Tab selectedMeals={selectedMeals} deselectMeal={deselectMeal} bundleSelected={bundleSelected} setShowTab={setShowTab} updateUserCart={updateUserCart} />}
+      {showTab && <Tab selectedMeals={selectedMeals} deselectMeal={deselectMeal} bundleSelected={bundleSelected} setShowTab={setShowTab} updateUserCart={updateUserCart} pricePerMeal={pricePerMeal} />}
     </div>
   )
 }

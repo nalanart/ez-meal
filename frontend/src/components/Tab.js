@@ -1,7 +1,7 @@
 import './Tab.css'
 import { useState } from 'react'
 
-export default function Tab({ selectedMeals, deselectMeal, bundleSelected, setShowTab, updateUserCart }) {
+export default function Tab({ selectedMeals, deselectMeal, bundleSelected, setShowTab, updateUserCart, pricePerMeal }) {
   return selectedMeals.length > 0 ? (
     <div className="Tab">
       <div className="Tab__heading">
@@ -11,12 +11,9 @@ export default function Tab({ selectedMeals, deselectMeal, bundleSelected, setSh
       <b>{bundleSelected}-Meal Bundle</b>
       <ul className="meal__items">
         {selectedMeals.map((meal, index) => (
-          <div className="meal__item row align-items-center">
+          <div className="meal__item row">
             <li key={meal._id} className="col-5">{meal.name}</li>
-            <div className="col-3 meal__item-qty">
-              <label for="meal__item-qty">Quantity&nbsp;</label>
-              <input id="meal__item-qty" type="number" min="1" placeholder="1"></input>
-            </div>
+            <p className="meal__item-qty col">${pricePerMeal}/meal</p>
             {/* <button type="button" className="btn" aria-label="Close" onClick={() => deselectMeal(index)}>Remove</button> */}
             <u className="col" onClick={() => deselectMeal(index)}>Remove</u>
           </div>

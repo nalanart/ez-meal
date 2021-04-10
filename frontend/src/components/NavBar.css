@@ -1,4 +1,4 @@
-nav {
+/* nav {
   background-color: #fcc512;
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -10,6 +10,7 @@ nav {
 }
 
 a.nav-link {
+  font-size: 1.125rem;
   color: #ffffff;
 }
 
@@ -31,4 +32,23 @@ a.nav-link:hover {
 
 .login-signup {
   font-size: 1.25rem;
+} */
+
+.nav-bar {
+  display: flex;
+  height: 10vh;
+  background-color: #f0f8ff;
+}
+
+.nav-bar__inner {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-bar__inner a {
+  color: rgb(91, 153, 91);
+  text-decoration: none;
 }

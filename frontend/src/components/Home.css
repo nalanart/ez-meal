@@ -1,6 +1,11 @@
-section.choose-bundle {
-  width: 80%;
-  margin: auto;
+.Home section {
+  width: 90%;
+  margin: 3rem auto;
+}
+
+h2.section-title {
+  text-align: start;
+  color: #afafaf;
 }
 
 .Bundles {
