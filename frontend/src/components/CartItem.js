@@ -3,6 +3,7 @@ import {
   Button,
   Card,
   CardContent,
+  CardMedia,
   Grid,
   IconButton,
   makeStyles,
@@ -14,7 +15,7 @@ import { AppContext } from "../context/context";
 
 const useStyles = makeStyles((theme) => ({
   media: {
-    height: 100,
+    height: 125,
   },
 }));
 
@@ -26,7 +27,11 @@ const CartItem = ({ item }) => {
       <CardContent>
         <Grid container alignItems="center">
           <Grid item xs={5} md={2}>
-            <img src={item.src} className={classes.media} />
+            <CardMedia
+              className={classes.media}
+              title={item.name}
+              image={item.imgSrc}
+            />
           </Grid>
           <Grid
             container
@@ -44,7 +49,7 @@ const CartItem = ({ item }) => {
               </Typography>
             </Grid>
             <Grid item>
-              <Button onClick={() => removeItem(item.id)}>
+              <Button onClick={() => removeItem(item._id)}>
                 <Typography variant="h6"></Typography>
                 remove
               </Button>
@@ -52,7 +57,7 @@ const CartItem = ({ item }) => {
           </Grid>
           <Grid container item direction="column" xs={1} justify="center">
             <Grid item align="center">
-              <IconButton onClick={() => changeAmount(item.id, "increase")}>
+              <IconButton onClick={() => changeAmount(item._id, "increase")}>
                 <KeyboardArrowUpIcon />
               </IconButton>
             </Grid>
@@ -62,7 +67,7 @@ const CartItem = ({ item }) => {
               </Typography>
             </Grid>
             <Grid item align="center">
-              <IconButton onClick={() => changeAmount(item.id, "decrease")}>
+              <IconButton onClick={() => changeAmount(item._id, "decrease")}>
                 <KeyboardArrowDownIcon />
               </IconButton>
             </Grid>

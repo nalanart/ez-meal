@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext, useEffect, useReducer } from "react";
 import reducer from "../reducer/reducer";
 
@@ -40,7 +41,7 @@ const cartItems = [
 
 const initialState = {
   loading: false,
-  cart: cartItems,
+  cart: [],
   total: 0,
   amount: 0,
 };
@@ -62,11 +63,47 @@ const AppProvider = ({ children }) => {
   };
 
   const changeAmount = (id, type) => {
+    console.log(id);
     dispatch({
       type: "CHANGE_AMOUNT",
       payload: { id, type },
     });
   };
+
+  const addItem = (item) => {
+    dispatch({
+      type: "ADD_ITEM",
+      payload: item,
+    });
+  };
+
+  // const fetchCart = async () => {
+  //   dispatch({
+  //     type: "LOADING",
+  //     payload: true,
+  //   });
+  //   try {
+  //     const items = await new Promise((resolve) => {
+  //       setTimeout(() => {
+  //         resolve(cartItems);
+  //       }, 750);
+  //     });
+  //     dispatch({
+  //       type: "DISPLAY_CART",
+  //       payload: items,
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  useEffect(() => {
+    const cart = localStorage.getItem("cart");
+    dispatch({
+      type: "DISPLAY_CART",
+      payload: cart ? JSON.parse(cart) : [],
+    });
+  }, []);
 
   useEffect(() => {
     dispatch({
@@ -76,7 +113,14 @@ const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ ...state, clearCart, removeItem, changeAmount }}>
+      value={{
+        ...state,
+        clearCart,
+        removeItem,
+        changeAmount,
+        dispatch,
+        addItem,
+      }}>
       {children}
     </AppContext.Provider>
   );

@@ -6,8 +6,8 @@ import CartItem from "../components/CartItem";
 
 const useStyles = makeStyles((theme) => ({
   clearBtn: {
-    paddingRight: theme.spacing(20),
-    paddingLeft: theme.spacing(20),
+    paddingRight: theme.spacing(15),
+    paddingLeft: theme.spacing(15),
     color: theme.palette.secondary.main,
     backgroundColor: theme.palette.error.light,
   },
@@ -44,13 +44,13 @@ const Cart = () => {
             <CartItem key={item.id} item={item} />
           </Grid>
         ))}
-        <Grid item xs={7}>
+        <Grid item xs={11} md={7}>
           <Typography variant="h5">
             <span style={{ float: "left" }}>Total</span>
             <span style={{ float: "right" }}>${total}</span>
           </Typography>
         </Grid>
-        <Grid item xs={6} align="center">
+        <Grid item xs={9} md={6} align="center">
           <Button
             className={classes.clearBtn}
             variant="contained"

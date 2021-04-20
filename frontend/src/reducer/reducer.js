@@ -1,23 +1,25 @@
 const reducer = (state, action) => {
   switch (action.type) {
     case "CLEAR_CART": {
+      const cart = [];
+      localStorage.setItem("cart", JSON.stringify(cart));
       return {
         ...state,
-        cart: [],
-        total: 0,
-        amount: 0,
+        cart,
       };
     }
     case "REMOVE_ITEM": {
+      const cart = state.cart.filter((item) => item._id !== action.payload);
+      localStorage.setItem("cart", JSON.stringify(cart));
       return {
         ...state,
-        cart: state.cart.filter((item) => item.id !== action.payload),
+        cart,
       };
     }
     case "CHANGE_AMOUNT": {
-      const tempCart = state.cart
+      const cart = state.cart
         .map((cartItem) => {
-          if (cartItem.id === action.payload.id) {
+          if (cartItem._id === action.payload.id) {
             if (action.payload.type === "increase")
               return { ...cartItem, amount: cartItem.amount + 1 };
             return { ...cartItem, amount: cartItem.amount - 1 };
@@ -25,10 +27,22 @@ const reducer = (state, action) => {
           return cartItem;
         })
         .filter((item) => item.amount !== 0);
-
+      localStorage.setItem("cart", JSON.stringify(cart));
       return {
         ...state,
-        cart: tempCart,
+        cart: cart,
+      };
+    }
+    case "LOADING":
+      return { ...state, loading: action.payload };
+    case "DISPLAY_CART":
+      return { ...state, cart: action.payload, loading: false };
+    case "ADD_ITEM": {
+      const cart = [...state.cart, { ...action.payload, amount: 1 }];
+      localStorage.setItem("cart", JSON.stringify(cart));
+      return {
+        ...state,
+        cart,
       };
     }
     case "GET_TOTALS": {
