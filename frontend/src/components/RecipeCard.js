@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import { useContext } from "react";
 import { AppContext } from "../context/context";
+import RecipeDialog from "./RecipeDialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,7 +70,7 @@ const RecipeCard = ({ recipe, addItem }) => {
             ADD TO CART
           </Button>
         )}
-        <Button onClick={() => console.log("Hello")}>DETAILS</Button>
+        <RecipeDialog recipe={recipe} />
       </CardActions>
     </Card>
   );

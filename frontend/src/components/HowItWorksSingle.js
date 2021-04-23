@@ -3,6 +3,7 @@ import { Card, CardContent, makeStyles, Typography } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 500,
+    marginBottom: theme.spacing(5),
   },
   media: {
     width: "100%",
